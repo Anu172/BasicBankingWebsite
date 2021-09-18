@@ -10,8 +10,6 @@ const AppError = require("./views/AppError");
 
 
 const PORT = process.env.PORT || 3000;
-// mongodb+srv://database:Ashish123@cluster0.sipku.mongodb.net/Bank?retryWrites=true&w=majority
-
 mongoose.connect("mongodb+srv://Anusha:Anusha@172@cluster0.rot57.mongodb.net/Anusha?retryWrites=true&" || "mongodb://localhost:27017/banking", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false })
     .then(() => {
         console.log("connected");
@@ -133,7 +131,11 @@ app.use((err, req, res, next) => {
     res.status(status).render("error", { err });
 });
 
-app.listen(PORT, (req, res) => {
+app.listen(PORT, err => {
+    if (err) {
+        console.log(err)
+        return
+    }
     console.log("Welcome to the Server ")
     console.log(" Check this link to see it's working : http://localhost:3000/")
 });
